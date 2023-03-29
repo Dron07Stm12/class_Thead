@@ -51,7 +51,7 @@ namespace Console_Thread
                 Thread.Sleep(2000);
             } while (y > x);
             Console.WriteLine("Основной поток завершен(Main)");
-
+            Console.WriteLine();
 
         }
     }
