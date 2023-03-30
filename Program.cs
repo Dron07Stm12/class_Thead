@@ -36,9 +36,9 @@ namespace Console_Thread
         public void  Start2()
         {
             
-            Console.WriteLine("метод Start2" + Thrd.Name);
+            Console.WriteLine("метод Start2 " + Thrd.Name);
            
-            int y = 20;
+            int y = 10;
             do
             {
                 this.Count++;
@@ -46,10 +46,10 @@ namespace Console_Thread
                 //Этот метод обусловливает приостановление того потока, из которого он был вызван, 
                 //на определенный период времени, указываемый в миллисекундах. Когда
                 //приостанавливается один поток, может выполняться другой. 
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
 
             } while (y > Count);
-            Console.WriteLine("Поток метода Start2 завершен " + Thrd.Name);
+            Console.WriteLine("Поток " + Thrd.Name+ " метода Start2 завершен ");
 
         }
 
@@ -57,7 +57,7 @@ namespace Console_Thread
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Основной поток");
+            Console.WriteLine("Основной поток ");
 
             Program program = new Program(" поток номер 1");
             Program program2 = new Program("поток  номер 2");
@@ -69,10 +69,13 @@ namespace Console_Thread
                 //высвобождает время для других потоков
                 Thread.Sleep(1000);
 
-            } while (program.Count < 10 && program2.Count < 10 && program3.Count <10);
+            } while (program.Thrd.IsAlive  && program2.Count < 10 && program3.Count < 10);
 
 
-            Console.WriteLine("Код  основного потока завершен(Main)");
+
+
+
+            Console.WriteLine("Код  основного потока завершен(Main) ");
         }
     }
 }
