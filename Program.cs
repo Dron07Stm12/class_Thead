@@ -63,7 +63,18 @@ namespace Console_Thread
             Program program2 = new Program("поток  номер 2");
             Program program3 = new Program("поток номер 3");
 
-            
+
+            Thread thread = new Thread(delegate (object o) {
+                for (int i = 0; i < (int)o; i++)
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine("поток thread " + i);
+                }
+
+
+            });
+            thread.Start(10);
+
             do
             {
                 Console.WriteLine("Код основного потока");
@@ -72,11 +83,12 @@ namespace Console_Thread
 
             } while (program.Thrd.IsAlive  && program2.Count < 10 && program3.Count < 10);
 
+            
 
             program.Thrd.Join();
             program2.Thrd.Join();
             program3.Thrd.Join();
-
+            thread.Join();
 
             Console.WriteLine("Код  основного потока завершен(Main) ");
         }
