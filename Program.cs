@@ -56,13 +56,14 @@ namespace Console_Thread
 
         static void Main(string[] args)
         {
-
+            //многозадачность на основе потоков - код делется на части на потоки
             Console.WriteLine("Основной поток ");
 
             Program program = new Program(" поток номер 1");
             Program program2 = new Program("поток  номер 2");
             Program program3 = new Program("поток номер 3");
 
+            
             do
             {
                 Console.WriteLine("Код основного потока");
@@ -72,7 +73,9 @@ namespace Console_Thread
             } while (program.Thrd.IsAlive  && program2.Count < 10 && program3.Count < 10);
 
 
-
+            program.Thrd.Join();
+            program2.Thrd.Join();
+            program3.Thrd.Join();
 
 
             Console.WriteLine("Код  основного потока завершен(Main) ");
